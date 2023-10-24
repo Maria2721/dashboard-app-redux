@@ -1,0 +1,32 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { FilterPanel } from "components/FilterPanel";
+import { JobList } from "components/JobList";
+import { TheHeader } from "components/TheHeader";
+
+import { addPositions } from "store/positions/position-actions";
+
+import data from "./mock/data.json";
+
+function App() {
+  const dispatch = useDispatch();
+
+  // sending data to the application at the time of mounting
+  // async get request in the future
+  useEffect(() => {
+    dispatch(addPositions(data));
+  });
+
+  return (
+    <>
+      <TheHeader />
+      <div className="container">
+        <FilterPanel />
+        <JobList />
+      </div>
+    </>
+  );
+}
+
+export default App;
